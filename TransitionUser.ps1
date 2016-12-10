@@ -15,7 +15,28 @@ $RoamingAppData
 
 $isTransitioned = $false
 
-# hello, we are just starting as part of user logon.  
+#check to see if AppData is still non-local
+if ($env:APPDATA.Substring(0,2) -ne 'C:') {
+    write-host 'app data is still redirected'
+    exit
+}
+else
+{
+    write-host 'app data is local'
+
+    # ok, apparantly app data is now local, has old redirected AppData been copied to roaming?
+
+    if ($isTransitioned -eq $false) {
+        $OldRedirectedAppData = ($env:HOMEDRIVE + '\SomeFolderPath\AppData')
+        $NewRoamingAppData = ($env:USERPROFILE + '\AppData\Roaming')
+        Write-Host ('OldRedirectedAppData: ' + $OldRedirectedAppData)
+        write-host ('NewRoamingAppData: ' + $NewRoamingAppData)
+        # do copy here
+    }
+
+}
+
+
 # check something to determine if transition has occured, if so, exit, otherwise copy stuff
 
 
