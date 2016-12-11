@@ -17,7 +17,7 @@ $RoamingAppData
 
 $isTransitioned = $false
 
-##check to see if AppData is still non-local
+#check to see if AppData is still non-local
 if ($env:APPDATA.Substring(0,2) -ne 'C:') {
     write-host 'app data is still redirected'
     exit
